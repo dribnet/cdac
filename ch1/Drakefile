@@ -1,0 +1,22 @@
+; grab the csv files from the internets
+
+URL_DIR=http://www.ericrochester.com/clj-data-analysis/data/
+DATA_DIR=data
+
+FILE=small-sample.csv
+%include web-fetch.drake
+
+FILE=small-sample-header.csv
+%include web-fetch.drake
+
+FILE=small-sample.json
+%include web-fetch.drake
+
+FILE=small-sample-header.xls
+%include web-fetch.drake
+
+FILE=small-sample.sqlite
+%include web-fetch.drake
+
+FILE=small-sample.xml
+%include web-fetch.drake

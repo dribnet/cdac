@@ -1,0 +1,19 @@
+; grab the csv files from the internets
+;
+; assumes the following variables are defined:
+; URL_DIR - the location of the remote directory
+; DATA_DIR - location of the local directory
+; FILE - the filename to fetch from remote and put local
+;
+; note that this only fetches the file if it has been changed
+; or if it does not exist locally. a second local temp file is
+; made to track if it has been downloaded before
+
+; grab file fresh if does not exist
+$[DATA_DIR]/$[FILE].marker <- [-timecheck]
+  touch $OUTPUT
+  curl -o $[DATA_DIR]/$[FILE] $[URL_DIR]/$[FILE]
+
+; refresh file from internet if needed
+$[DATA_DIR]/$[FILE] <-
+  curl -o $[DATA_DIR]/$[FILE] -z $[DATA_DIR]/$[FILE] $[URL_DIR]/$[FILE]
